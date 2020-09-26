@@ -8,11 +8,13 @@ public class WageComputation {
 		int emp_wage =0;
 		int emp_hrs =0;  
 		int empCheck = (int) Math.floor((Math.random() * 10))%3;
-		if(empCheck == full_time) {
-			emp_hrs = 8;
-		}
-		else if(empCheck == part_time) {
-			emp_hrs = 4;
+		switch(empCheck) {
+			case 1: emp_hrs = 8;
+					break;
+			case 2: emp_hrs = 4;
+					break;
+			default: emp_hrs = 0;
+					 break;
 		}
 		emp_wage = wage_per_hr * emp_hrs;
 		System.out.println("Employee wage is : "+ emp_wage);
