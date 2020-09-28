@@ -4,9 +4,19 @@ public class WageComputation {
 	public static final int full_time = 1;
 	public static final int part_time = 2;
 	
+	private final String company;
+	private final int empRate;
+	private final int noOfWorkingDays;
+	private final int hrsPerMonth;
+	private int total_empwage;
 	
-	public static int calculateWage(String company,int empRate,int noOfWorkingDays,int hrsPerMonth) {
-		int total_empwage = 0;
+	public WageComputation(String company,int empRate,int noOfWorkingDays,int hrsPerMonth) {
+		this.company = company;
+		this.empRate = empRate;
+		this.noOfWorkingDays = noOfWorkingDays;
+		this.hrsPerMonth = hrsPerMonth;
+	}
+	public int calculateWage() {
 		int total_emp_hrs = 0;
 		int total_working_days = 0;
 		while(total_emp_hrs < hrsPerMonth 
@@ -29,13 +39,19 @@ public class WageComputation {
 			int emp_wage = emp_hrs * empRate;
 			total_empwage += emp_wage; 
 			}
-		System.out.println("Employee wage for "+company+" company is "+total_empwage);
 		return total_empwage;
+	}
+	public String toString() {
+		return "Total Employee Wage for"+company+" company is "+total_empwage;
 	}
 	
 	public static void main(String[] args) {
+		WageComputation DMart = new WageComputation("D-Mart",20,30,100);
+		DMart.calculateWage();
+		System.out.println(DMart);
+		WageComputation Reliance = new WageComputation("Reliance",25,27,95);
+		Reliance.calculateWage();
+		System.out.println(Reliance);
 		
-		calculateWage("D-Mart",20,30,100);
-		calculateWage("Reliance",25,27,90);
 		}
 }
