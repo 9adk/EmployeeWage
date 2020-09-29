@@ -1,24 +1,25 @@
 package employee;
-
+import java.util.*;
 public class WageComputation implements CompanyEmployeeWage {
 	public static final int full_time = 1;
 	public static final int part_time = 2;
 	
-	private int numOfCompany = 0;
-	private CompanyEmpWage[] companyEmpWageArray;
+	private List<CompanyEmpWage> companyEmpWageList;
 	
 	public WageComputation() {
-		companyEmpWageArray = new CompanyEmpWage[5];
+		companyEmpWageList = new ArrayList<CompanyEmpWage>();
 	}
 	
 	public void addCompanyEmpWage(String company,int empRate,int noOfWorkingDays,int hrsPerMonth) {
-		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRate, noOfWorkingDays, hrsPerMonth);
-		numOfCompany++;
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRate, noOfWorkingDays, hrsPerMonth);
+		companyEmpWageList.add(companyEmpWage);
 	}
 	public void computeEmpWage() {
-		for(int i = 0; i < numOfCompany; i++) {
-			companyEmpWageArray[i].setTotal_EmpWage(this.computeEmpWage(companyEmpWageArray[i])); 
-			System.out.println(companyEmpWageArray[i]);
+		for(int i = 0; i < companyEmpWageList.size(); i++) {
+			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
+			
+			companyEmpWage.setTotal_EmpWage(this.computeEmpWage(companyEmpWage)); 
+			System.out.println(companyEmpWage);
 		}
 	}
 	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
