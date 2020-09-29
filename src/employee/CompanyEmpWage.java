@@ -1,11 +1,14 @@
 package employee;
-
+import java.util.*;
 public class CompanyEmpWage {
 	public final String company;
 	public final int empRate;
 	public final int noOfWorkingDays;
 	public final int hrsPerMonth;
 	public int total_empwage;
+	
+	
+	public List<Integer> dailyWage = new ArrayList<Integer>();
 	
 	public CompanyEmpWage(String company,int empRate,int noOfWorkingDays,int hrsPerMonth) {
 		this.company = company;
@@ -17,7 +20,14 @@ public class CompanyEmpWage {
 		total_empwage = totalempwage;
 		return total_empwage;
 	}
+	public void setDailyWage(List<Integer> dailyWage) {
+		this.dailyWage = dailyWage;
+	}
 	public String toString() {
-		return "Total Employee Wage for"+ company +" company is "+ total_empwage;
+		System.out.println("Daily Wage for "+company +" company is: ");
+		for(int i = 0; i < dailyWage.size(); i++ ) {
+			System.out.print(dailyWage.get(i) + " ");
+		}
+		return "\nTotal Employee Wage for"+ company +" company is "+ total_empwage;
 	}
 }

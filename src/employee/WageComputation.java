@@ -23,12 +23,17 @@ public class WageComputation implements CompanyEmployeeWage {
 		}
 	}
 	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
+		
+		//variables
+		
+		int emp_hrs = 0;
 		int total_emp_hrs = 0;
 		int total_working_days = 0;
+		int empWage = 0;
+		List<Integer> dailyWage = new ArrayList<Integer>();
 		while(total_emp_hrs < companyEmpWage.hrsPerMonth 
 				&& total_working_days < companyEmpWage.noOfWorkingDays) {
 			
-			int emp_hrs = 0;
 			int empCheck = (int) Math.floor((Math.random() * 10))%3;
 			switch(empCheck) {
 				case full_time: emp_hrs = 8;
@@ -42,7 +47,10 @@ public class WageComputation implements CompanyEmployeeWage {
 			}
 			total_emp_hrs += emp_hrs;
 			System.out.println("Days : "+total_working_days+" Emp Hr : "+ emp_hrs);
+			empWage = emp_hrs * companyEmpWage.empRate;
+			dailyWage.add(empWage);
 			}
+		companyEmpWage.setDailyWage(dailyWage);
 		return total_emp_hrs * companyEmpWage.empRate;
 	}
 	
