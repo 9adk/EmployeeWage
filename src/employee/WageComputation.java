@@ -5,7 +5,7 @@ public class WageComputation implements CompanyEmployeeWage {
 	public static final int part_time = 2;
 	
 	private List<CompanyEmpWage> companyEmpWageList;
-	
+
 	public WageComputation() {
 		companyEmpWageList = new ArrayList<CompanyEmpWage>();
 	}
@@ -21,6 +21,17 @@ public class WageComputation implements CompanyEmployeeWage {
 			companyEmpWage.setTotal_EmpWage(this.computeEmpWage(companyEmpWage)); 
 			System.out.println(companyEmpWage);
 		}
+	}
+	
+	public int getTotal_EmpWage(String company) {
+		int totalWage = 0;
+		for(int i = 0; i < companyEmpWageList.size();i++ ) {
+			if(companyEmpWageList.get(i).company.equalsIgnoreCase(company)) {
+				totalWage = companyEmpWageList.get(i).total_empwage;
+				break;
+			}
+		}
+		return totalWage;
 	}
 	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
 		
@@ -60,5 +71,6 @@ public class WageComputation implements CompanyEmployeeWage {
 		empWageBuilder.addCompanyEmpWage("D-Mart",20,30,100);
 		empWageBuilder.addCompanyEmpWage("Reliance",25,27,95);
 		empWageBuilder.computeEmpWage();
+		System.out.println("Total Employee Wage of Reliance company is : " + empWageBuilder.getTotal_EmpWage("Reliance"));
 		}
 }
