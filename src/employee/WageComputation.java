@@ -1,6 +1,6 @@
 package employee;
 
-public class WageComputation {
+public class WageComputation implements CompanyEmployeeWage {
 	public static final int full_time = 1;
 	public static final int part_time = 2;
 	
@@ -11,11 +11,11 @@ public class WageComputation {
 		companyEmpWageArray = new CompanyEmpWage[5];
 	}
 	
-	private void addCompanyEmpWage(String company,int empRate,int noOfWorkingDays,int hrsPerMonth) {
+	public void addCompanyEmpWage(String company,int empRate,int noOfWorkingDays,int hrsPerMonth) {
 		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRate, noOfWorkingDays, hrsPerMonth);
 		numOfCompany++;
 	}
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for(int i = 0; i < numOfCompany; i++) {
 			companyEmpWageArray[i].setTotal_EmpWage(this.computeEmpWage(companyEmpWageArray[i])); 
 			System.out.println(companyEmpWageArray[i]);
